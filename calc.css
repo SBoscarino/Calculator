@@ -1,0 +1,42 @@
+body {
+
+}
+
+.calcBody {
+  width:500px;
+  height:700px;
+  display:flex;
+  flex-wrap: wrap;
+  background-color: #f36265;
+  font-family: 'Indie Flower', cursive;
+}
+
+.green {
+  background-color: #f24e75;
+  border-top: 1px solid #f36265;
+  border-left: 1px solid #f36265;
+  color: white;
+}
+
+.lightgreen {
+  background-color: #f36265;
+  border-top: solid 1px color:#f24e75;
+  color:black;
+}
+
+.calcBody > div {
+  width: 24.5%;
+
+}
+
+
+#clear {
+  width: 24%;
+  border: 1px solid #f36265;
+  background-color: #f24e75;
+}
+
+#typeLine {
+  background-color: #f24e75;
+  width: 75%;
+}
