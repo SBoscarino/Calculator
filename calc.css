@@ -9,6 +9,10 @@ body {
   flex-wrap: wrap;
   background-color: #f36265;
   font-family: 'Indie Flower', cursive;
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
 }
 
 .green {
@@ -25,15 +29,28 @@ body {
 }
 
 .calcBody > div {
-  width: 24.5%;
-
+  width: 24.8%;
+  padding-top: 5%;
 }
 
+.lightgreen:hover {
+  background-color: #d56a6c;
+  color: white;
+}
+
+.green:hover {
+  background-color: #c74463;
+  color: white;
+}
 
 #clear {
-  width: 24%;
+  width: 24.5%;
   border: 1px solid #f36265;
   background-color: #f24e75;
+}
+
+#clear {
+
 }
 
 #typeLine {
