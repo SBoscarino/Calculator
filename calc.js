@@ -1,13 +1,18 @@
+//always use this for JS files. JS will be less permissive.
 'use strict';
 
 const clear = document.querySelector('#clear');
 const equals = document.querySelector('#equals');
 const typeLine = document.querySelector('#typeLine');
 const buttons = document.querySelectorAll('div.button2');
+const meow = document.querySelectorAll('div.button2');
+const clearMeow = document.querySelector('#clear');
 let lhs = '';
 let rhs = '';
 let operator = '';
 
+
+//event handler // big math is big
 const eventHandler = function(event) {
   const entry = event.target.textContent;
 
@@ -24,14 +29,17 @@ const eventHandler = function(event) {
   } else {
     rhs += entry;
   }
-
   typeLine.textContent = [ lhs, operator, rhs ].join(' ');
 };
+
+
+
 
 const isOperator = function(entry) {
   return entry === '+' || entry === '-' || entry === 'X' || entry === '/';
 };
 
+////trying to combine right and left
 const operate = function(operator, lhs, rhs) {
   lhs = parseInt(lhs);
   rhs = parseInt(rhs);
@@ -44,10 +52,17 @@ const operate = function(operator, lhs, rhs) {
   } else if (operator === '/') {
     return lhs / rhs;
   } else {
-    throw new Error('YOU FUCKED UP!!!')
+    throw new Error('You have done something wrong!!!')
   }
 };
 
+//this if the variable that passes a function. It is called when a user clicks.
+const meowHandler = function() {
+  const audio = new Audio('./Sad-cat.mp3')
+  audio.play();
+};
+
+//Event listener for clear button
 clear.addEventListener('click', function(event) {
   lhs = '';
   rhs = '';
@@ -55,8 +70,8 @@ clear.addEventListener('click', function(event) {
   typeLine.textContent = '';
 });
 
+// Event listener for equals button
 equals.addEventListener('click', eventHandler);
-
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', eventHandler);
 }
@@ -64,9 +79,17 @@ for (let i = 0; i < buttons.length; i++) {
 
 
 
+///////SOUND///////
+//this is the for loop for my sound / meow var. it creates an event listener for items within the meow array.
+for (let i = 0; i < meow.length; i++) {
+  meow[i].addEventListener('click', meowHandler);
+}
 
-
-
+//sound just for clear button
+clearMeow.addEventListener('click', function() {
+  const audio2 = new Audio('./Kitty-meow.mp3')
+  audio2.play();
+});
 
 
 
@@ -168,16 +191,6 @@ for (let i = 0; i < buttons.length; i++) {
 //   console.log(answerBox);
 // });
 //
-
-
-
-
-
-//Sound
-// meow.addEventListener('click', function(evt) {
-//   const audio = new Audio('./Sad-cat.mp3')
-//   audio.play();
-// });
 
 
 
