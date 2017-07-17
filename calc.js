@@ -7,54 +7,77 @@ const typeLine = document.querySelector('#typeLine');
 const buttons = document.querySelectorAll('div.button2');
 const meow = document.querySelectorAll('div.button2');
 const clearMeow = document.querySelector('#clear');
+let answer = '';
 let lhs = '';
 let rhs = '';
 let operator = '';
 
 
-//event handler // big math is big
+//event handler accepts the click events
+//takes clicked numbers(strings) and makes them numbers.
 const eventHandler = function(event) {
   const entry = event.target.textContent;
 
-  if (!operator) {
-    lhs += entry;
-  } else if (!operator && is_operator(entry)) {
-    // Is operator
+  if (entry === "+" || entry  === '-' || entry === 'X' || entry === '/') {
     operator = entry;
     lhs = parseInt(lhs);
-  } else if(is_operator(entry)) {
-    lhs = operate(operator, lhs, rhs)
-    rhs = '';
-    operator = entry;
-  } else {
-    rhs += entry;
+    console.log("lhs with parseInt", typeof lhs + lhs);
   }
-  typeLine.textContent = [ lhs, operator, rhs ].join(' ');
-};
+  else if (entry === "=") {
+    console.log("at else if for lhs and textcontent");
+    lhs = operate(operator, lhs, rhs);
+    console.log(lhs);
+    typeLine.textContent = " ";
+    typeLine.textContent = lhs;
+  }
+  else if (!operator) {
+    lhs += entry;
+    console.log("This is left hand side number: ", lhs);
+    console.log("Type of lhs before parseint: ", typeof lhs);
+  }
+  else {
+    console.log("at else");
+    rhs += entry;
+    rhs = parseInt(rhs);
+  }
 
+  if (entry !== "=") {
+    typeLine.textContent = [ lhs, operator, rhs ].join(' ');
+  }
+}; 
 
-
-
+// if you click an operator, this checks for it.
 const isOperator = function(entry) {
   return entry === '+' || entry === '-' || entry === 'X' || entry === '/';
 };
 
-////trying to combine right and left
+////combines left and right and the operator.
 const operate = function(operator, lhs, rhs) {
   lhs = parseInt(lhs);
   rhs = parseInt(rhs);
   if (operator === '+') {
-    return lhs + rhs;
-  } else if (operator === '-') {
-    return lhs - rhs;
-  } else if (operator === 'X') {
-    return lhs * rhs;
-  } else if (operator === '/') {
-    return lhs / rhs;
-  } else {
-    throw new Error('You have done something wrong!!!')
+    answer =  lhs + rhs;
   }
+  else if (operator === '-') {
+    answer = lhs - rhs;
+  }
+  else if (operator === 'X') {
+    answer = lhs * rhs;
+  }
+  else if (operator === '/') {
+    answer = lhs / rhs;
+  }
+  else {
+    console.log("Something is wrong.");
+  }
+  console.log(answer);
+  return answer;
+
 };
+
+
+
+
 
 //this if the variable that passes a function. It is called when a user clicks.
 const meowHandler = function() {
@@ -80,7 +103,7 @@ for (let i = 0; i < buttons.length; i++) {
 
 
 ///////SOUND///////
-//this is the for loop for my sound / meow var. it creates an event listener for items within the meow array.
+//this is the for loop for my sound/// meow var. it creates an event listener for items within the meow array.
 for (let i = 0; i < meow.length; i++) {
   meow[i].addEventListener('click', meowHandler);
 }
@@ -117,6 +140,27 @@ clearMeow.addEventListener('click', function() {
 
 
 
+
+
+
+  // if (!operator) {
+  //   lhs += entry;
+  //   console.log("This is left hand side number: ", lhs);
+  //   console.log("Type of lhs before parseint: ", typeof lhs);
+    //this part works.
+//   } else if (!operator && is_Operator(entry)) {
+ // Is operator
+//     operator = entry;
+//     lhs = parseInt(lhs);
+//   } else if(is_Operator(entry)) {
+//     lhs = operate(operator, lhs, rhs)
+//     rhs = '';
+//     operator = entry;
+//   } else {
+//     rhs += entry;
+//   }
+//   typeLine.textContent = [ lhs, operator, rhs ].join(' ');
+// };
 
 
 
